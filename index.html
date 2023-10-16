@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROOT Landing Page</title>
+    <title>Welcome to Root!</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head>
 <body>
     <div class="container">
         <img src="root logo.svg" alt="ROOT Logo" id="root-logo">
         <h1>TRANSCENDING TRADITIONAL HEALTH BOUNDARIES</h1>
-        <form id="email-form">
+        <form id="email-form" onsubmit="submitForm(); return false;">
             <input type="email" placeholder="Email" id="email-input">
-            <button id="waitlist-btn">JOIN WAITLIST</button>
+            <div id="email-error"></div>
+            <button type="submit" id="waitlist-btn">JOIN WAITLIST</button>
         </form>
-        <p id="feedback-message" style="display: none;"></p> <!-- This is new -->
+        <p id="feedback-message" style="display: none;"></p>
 
     </div>
     <script type="module">
@@ -65,6 +67,24 @@
         feedbackMessage.style.color = "red";     // Set the color to red
     }
 });
+    function submitForm() {
+        const emailInput = document.getElementById('email-input');
+        const emailError = document.getElementById('email-error');
+        
+        if (!isValidEmail(emailInput.value)) {
+            emailError.innerText = "Please enter a valid email address.";
+            return; // Stops the form from submitting.
+        }
+        
+        emailError.innerText = ""; // Clears any previous errors.
+        
+        addToWaitlist();  // This function should add the email to Firebase.
+    }
+
+    function isValidEmail(email) {
+        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return regex.test(email);
+    }
       </script>    
 </body>
 </html>

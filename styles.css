@@ -47,6 +47,11 @@ h1 {
 
 }
 
+#email-error {
+    color: red;
+}
+
+
 /* Style for the 'JOIN WAITLIST' button */
 #waitlist-btn {
     display: block; /* Make the button a block-level element */
