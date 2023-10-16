@@ -1,0 +1,67 @@
+
+
+/* Import the DM Sans font with regular weight (400) */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400&display=swap');
+
+/* Set the entire webpage's background to the gradient image */
+body {
+    font-family: 'DM Sans', sans-serif; /* Set the font for the entire page */
+    font-weight: 400; /* Regular font weight */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Make sure it covers the whole viewport height */
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    background-image: url('landingpage_bg.png'); /* Change to your image's path */
+    background-size: cover;
+}
+
+.container {
+    text-align: center; /* Center the text inside the container */
+}
+
+/* Style for the logo */
+#root-logo {
+    width: 250px; /* Adjust this value to change the size of the logo */
+    margin-bottom: 5px; /* Space between the logo and the tagline */
+}
+
+/* Style for the tagline */
+h1 {
+    font-size: 18px; /* 28px font size */
+    color: #E9EE1C; /* White color text */
+    margin-bottom: 30px; /* Space between tagline and email input box */
+}
+
+/* Style for the email input box */
+#email-input {
+    padding: 10px 20px; /* Inner spacing for the input box */
+    border: none; /* Remove the default border */
+    border-radius: 5px; /* Rounded corners */
+    outline: none; /* Remove the default focus outline */
+    font-size: 16px; /* Font size for the input text */
+    color: #616367;
+    width: 250px; /* Width of the input box */
+    background-color: #ECF4F9;
+
+}
+
+/* Style for the 'JOIN WAITLIST' button */
+#waitlist-btn {
+    display: block; /* Make the button a block-level element */
+    margin: 20px auto 0 auto; /* Center the button horizontally */
+    padding: 10px 20px; /* Inner spacing for the button */
+    background-color: transparent; /* No background color */
+    color: #E9EE1C; /* White text */
+    border: none; /* Remove the default border */
+    border-radius: 25px; /* Rounded corners, can be adjusted or removed */
+    cursor: pointer; /* Change the cursor to a hand when hovering over the button */
+    font-size: 24px; /* Adjust the font size for the button text */
+    font-weight: 400; /* Make the font bolder */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+#waitlist-btn:hover {
+    color: #ECF4F9; /* Lighter color when hovering over the button */
+}
