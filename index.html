@@ -11,7 +11,7 @@
     <div class="container">
         <img src="root logo.svg" alt="ROOT Logo" id="root-logo">
         <h1>TRANSCENDING TRADITIONAL HEALTH BOUNDARIES</h1>
-        <form id="email-form" onsubmit="return submitForm();">
+        <form id="email-form">
             <input type="email" placeholder="Email" id="email-input">
             <div id="email-error"></div>
             <button type="submit" id="waitlist-btn">JOIN WAITLIST</button>
@@ -38,7 +38,15 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        document.getElementById('email-form').addEventListener('submit', async function(event) {
+        document.getElementById('submit-id').addEventListener('click', async function(event) {
+        document.getElementById('email-input').addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) { // 13 is the keycode for the Enter key
+        event.preventDefault();
+        submitForm(); // This will run our validation and submission logic when Enter is pressed
+        return false;
+    }
+});
+    
     event.preventDefault();  // This line prevents the form from actually submitting (which would cause a page reload)
     const email = document.getElementById('email-input').value;
     const feedbackMessage = document.getElementById('feedback-message');
@@ -71,6 +79,11 @@
         const emailInput = document.getElementById('email-input');
         const emailError = document.getElementById('email-error');
         
+        if (!emailInput.value.trim()) { // Check if the input is empty or just whitespace
+            emailError.innerText = "Please enter an email address.";
+            return false;
+        }
+
         if (!isValidEmail(emailInput.value)) {
             emailError.innerText = "Please enter a valid email address.";
             return false; // Explicitly stop the form from submitting.
