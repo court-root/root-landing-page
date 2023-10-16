@@ -11,7 +11,7 @@
     <div class="container">
         <img src="root logo.svg" alt="ROOT Logo" id="root-logo">
         <h1>TRANSCENDING TRADITIONAL HEALTH BOUNDARIES</h1>
-        <form id="email-form" onsubmit="submitForm(); return false;">
+        <form id="email-form" onsubmit="return submitForm();">
             <input type="email" placeholder="Email" id="email-input">
             <div id="email-error"></div>
             <button type="submit" id="waitlist-btn">JOIN WAITLIST</button>
@@ -73,7 +73,7 @@
         
         if (!isValidEmail(emailInput.value)) {
             emailError.innerText = "Please enter a valid email address.";
-            return; // Stops the form from submitting.
+            return false; // Explicitly stop the form from submitting.
         }
         
         emailError.innerText = ""; // Clears any previous errors.
