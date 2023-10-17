@@ -14,9 +14,9 @@
         <form id="email-form">
             <input type="email" placeholder="Email" id="email-input">
             <div id="email-error"></div>
-            <button type="submit" id="waitlist-btn">JOIN WAITLIST</button>
+            <button id="submit-id" type="submit">JOIN WAITLIST</button>
         </form>
-        <p id="feedback-message" style="display: none;"></p>
+        <p id="feedback-message" class="feedback-visible"></p>
 
     </div>
     <script type="module">
@@ -38,17 +38,21 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        document.getElementById('submit-id').addEventListener('click', async function(event) {
         document.getElementById('email-input').addEventListener('keydown', function(event) {
-    if (event.keyCode === 13) { // 13 is the keycode for the Enter key
+    if (event.key === 'Enter') {
         event.preventDefault();
-        submitForm(); // This will run our validation and submission logic when Enter is pressed
-        return false;
+        submitForm();
     }
 });
+        document.getElementById('submit-id').addEventListener('click', async function(event) {
+        
     
     event.preventDefault();  // This line prevents the form from actually submitting (which would cause a page reload)
-    const email = document.getElementById('email-input').value;
+    submitForm();
+    
+});
+async function addToFirebase() {    
+const email = document.getElementById('email-input').value;
     const feedbackMessage = document.getElementById('feedback-message');
     
     try {
@@ -60,8 +64,9 @@
         
         // Display a confirmation message
         feedbackMessage.textContent = "Successfully added to the waitlist!";
-        feedbackMessage.style.display = "block";  // Make the message visible
-        feedbackMessage.style.color = "green";    // Set the color to green
+        feedbackMessage.style.display = "block";
+        feedbackMessage.classList.add("feedback-visible", "feedback-success");
+        feedbackMessage.classList.remove("feedback-error");
         
         // Optionally, clear the email input after a successful addition
         document.getElementById('email-input').value = '';
@@ -71,11 +76,12 @@
         
         // Display an error message
         feedbackMessage.textContent = "Failed to add to the waitlist. Please try again.";
-        feedbackMessage.style.display = "block"; // Make the message visible
-        feedbackMessage.style.color = "red";     // Set the color to red
+        feedbackMessage.style.display = "block";
+        feedbackMessage.classList.add("feedback-visible", "feedback-error");
+        feedbackMessage.classList.remove("feedback-success");
     }
-});
-    function submitForm() {
+}
+function submitForm() {
         const emailInput = document.getElementById('email-input');
         const emailError = document.getElementById('email-error');
         
@@ -90,14 +96,20 @@
         }
         
         emailError.innerText = ""; // Clears any previous errors.
-        
-        addToWaitlist();  // This function should add the email to Firebase.
+        addToFirebase();
     }
 
     function isValidEmail(email) {
         const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
         return regex.test(email);
     };
+    document.getElementById('email-input').addEventListener('input', function() {
+    const emailError = document.getElementById('email-error');
+    const feedbackMessage = document.getElementById('feedback-message');
+    
+    emailError.innerText = "";
+    feedbackMessage.style.display = "none";
+});
       </script>    
 </body>
 </html>

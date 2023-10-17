@@ -48,12 +48,12 @@ h1 {
 }
 
 #email-error {
-    color: red;
+    color: #616367;
 }
 
 
 /* Style for the 'JOIN WAITLIST' button */
-#waitlist-btn {
+#submit-id {
     display: block; /* Make the button a block-level element */
     margin: 20px auto 0 auto; /* Center the button horizontally */
     padding: 10px 20px; /* Inner spacing for the button */
@@ -67,6 +67,28 @@ h1 {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Shadow effect */
 }
 
-#waitlist-btn:hover {
+#submit-id:hover {
     color: #ECF4F9; /* Lighter color when hovering over the button */
 }
+.feedback-visible {
+    /* Common styles for feedback messages */
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.feedback-success {
+    color: #616367;
+}
+
+.feedback-error {
+    color: #616367;
+}
+
+#email-error-message {
+    color: #616367; /* Color of the error text */
+    font-size: 14px; /* Adjust size as needed */
+    /* Add any additional styling attributes you want for the error message here */
+}
+
